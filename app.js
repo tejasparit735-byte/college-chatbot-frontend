@@ -584,4 +584,3 @@ async function restoreStudentSession() {
   await loadStudentColleges();
 }
 restoreStudentSession();
-
