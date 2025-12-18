@@ -5,7 +5,7 @@
 
 /* ===================== CONFIG ===================== */
 let sessionToken = localStorage.getItem("sessionToken");
-const API = "https://college-chatbot-backend-0x9x.onrender.com/api";
+const API = "https://college-chatbot-backend-.onrender.com/api";
 
 
 
@@ -97,9 +97,7 @@ async function login() {
   try {
     const res = await fetch(API + "/login", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: emailInput.value.trim(),
         password: passwordInput.value
@@ -113,39 +111,22 @@ async function login() {
       return;
     }
 
-    // SUCCESS
     localStorage.setItem("sessionToken", data.token);
 
     authBox.classList.add("hidden");
     studentBox.classList.remove("hidden");
 
     welcome.innerText = "Welcome " + data.user.name;
-    studentInfo.innerText = `Percentage: ${data.user.percentage || "N/A"}%`;
+    studentInfo.innerText = `Percentage: ${data.user.percentage ?? "N/A"}%`;
 
-    await loadStudentColleges();
+    loadStudentColleges();
 
   } catch (err) {
-    console.error("Login error:", err);
+    console.error("Student login error:", err);
     alert("Unable to connect to server");
   }
 }
 
-
-  const data = await res.json();
-  if (!data.success) return alert("Invalid login");
-
-  sessionToken = data.token;
-  localStorage.setItem("sessionToken", sessionToken);
-
-  authBox.classList.add("hidden");
-  studentBox.classList.remove("hidden");
-
-  welcome.innerText = "Welcome " + data.user.name;
-  studentInfo.innerText = `Percentage: ${data.user.percentage || "N/A"}%`;
-
-  await loadStudentColleges();
-  botMessage("👋 Select a college or ask about cutoff, staff, facilities.");
-}
 
 function logout() {
   localStorage.removeItem("sessionToken");
@@ -155,24 +136,35 @@ function logout() {
 
 /* ===================== ADMIN LOGIN ===================== */
 async function adminLogin() {
-  const res = await fetch(API + "/admin/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      username: adminUser.value,
-      password: adminPass.value
-    })
-  });
+  try {
+    const res = await fetch(API + "/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        username: adminUser.value.trim(),
+        password: adminPass.value
+      })
+    });
 
-  const data = await res.json();
-  if (!data.success) return alert("Invalid admin credentials");
+    const data = await res.json();
 
-  authBox.classList.add("hidden");
-  adminLoginBox.classList.add("hidden");
-  adminDashboard.classList.remove("hidden");
+    if (!res.ok) {
+      alert(data.error || "Admin login failed");
+      return;
+    }
 
-  loadAdminColleges();
+    authBox.classList.add("hidden");
+    adminLoginBox.classList.add("hidden");
+    adminDashboard.classList.remove("hidden");
+
+    loadAdminColleges();
+
+  } catch (err) {
+    console.error("Admin login error:", err);
+    alert("Unable to connect to server");
+  }
 }
+
 
 function adminLogout() {
   selectedAdminCollegeId = null;
