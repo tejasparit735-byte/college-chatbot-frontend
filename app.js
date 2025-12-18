@@ -5,7 +5,7 @@
 
 /* ===================== CONFIG ===================== */
 let sessionToken = localStorage.getItem("sessionToken");
-const API = "https://college-chatbot-backend.onrender.com/api";
+const API = "https://college-chatbot-backend-0x9x.onrender.com";
 
 
 /* ===================== GLOBAL STATE ===================== */
@@ -584,3 +584,4 @@ async function restoreStudentSession() {
   await loadStudentColleges();
 }
 restoreStudentSession();
+
