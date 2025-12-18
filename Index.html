@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Chatbot for College Enquiry</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AUTH ================= -->
+<div class="card" id="authBox">
+  <h2>Student Login / Register</h2>
+
+  <input id="name" placeholder="Name (for registration)">
+  <input id="email" placeholder="Gmail">
+  <input id="password" type="password" placeholder="Password">
+  <input id="percentage" placeholder="Percentage (optional)">
+
+  <button onclick="register()">Register</button>
+  <button onclick="login()">Login</button>
+  <button class="secondary" onclick="showAdminLogin()">Login as Admin</button>
+</div>
+
+<!-- ================= ADMIN LOGIN ================= -->
+<div class="card hidden" id="adminLoginBox">
+  <h2>Admin Login</h2>
+  <input id="adminUser" placeholder="Username">
+  <input id="adminPass" type="password" placeholder="Password">
+  <button onclick="adminLogin()">Login</button>
+  <button class="secondary" onclick="backToStudent()">Back</button>
+</div>
+
+<!-- ================= STUDENT PANEL ================= -->
+<div class="card hidden" id="studentBox">
+  <h2 id="welcome"></h2>
+
+  <!-- Student Dashboard Info -->
+  <div class="small-text" id="studentInfo"></div>
+
+  <!-- College Selection -->
+  <div class="hint">Select a college to view details</div>
+  <ul class="college-list" id="studentCollegeList"></ul>
+
+  <!-- College Profile Panel -->
+  <div id="collegeProfile" class="hidden" style="margin-top:15px;">
+    <h3 id="profileName"></h3>
+
+    <div id="profileStatus" class="small-text"></div>
+
+    <div class="small-text">
+      📍 <span id="profileLocation"></span>
+    </div>
+
+    <div class="small-text">
+      🌐 <a id="profileWebsite" href="#" target="_blank" style="color:#38bdf8;"></a>
+    </div>
+
+    <hr>
+
+    <b>Staff</b>
+    <ul id="profileStaff"></ul>
+
+    <b>Facilities</b>
+    <ul id="profileFacilities"></ul>
+  </div>
+
+  <button onclick="logout()" style="margin-top:10px;">Logout</button>
+
+
+
+  <!-- Chatbot -->
+  <section class="panel chatbot">
+    <h3>AI Chatbot</h3>
+    <div id="chatBox"></div>
+
+    <div class="quick-replies">
+      <button onclick="quickAsk('college')">Colleges</button>
+      <button onclick="quickAsk('staff')">Staff</button>
+      <button onclick="quickAsk('facilities')">Facilities</button>
+      <button onclick="quickAsk('admission')">Admission</button>
+      <button onclick="quickAsk('recommend')">Recommend</button>
+    </div>
+
+    <input id="userInput" placeholder="Ask about college, staff, facilities...">
+    <button onclick="sendMessage()">Send</button>
+  </section>
+
+</div>
+
+<!-- ================= ADMIN DASHBOARD ================= -->
+<div class="card hidden" id="adminDashboard">
+  <h2>Admin Dashboard</h2>
+
+  <section class="admin-section">
+    <h3>College Management</h3>
+
+<input id="collegeName" placeholder="College Name">
+<textarea id="collegeInfo" placeholder="College Information"></textarea>
+<input id="collegeCutoff" placeholder="Cutoff Percentage">
+<input id="collegeWebsite" placeholder="College Website">
+
+<button onclick="addCollege()">Add College</button>
+<button class="secondary" onclick="updateCollege()">Update Selected College</button>
+
+<ul id="collegeList"></ul>
+
+  </section>
+
+  <section class="admin-section">
+    <h3>Staff Management</h3>
+    <select id="staffCollegeSelect"></select>
+    <input id="staffName" placeholder="Staff Name">
+    <input id="staffRole" placeholder="Role">
+    <button onclick="addStaff()">Add Staff</button>
+    <ul id="staffList"></ul>
+  </section>
+
+  <section class="admin-section">
+    <h3>Facility Management</h3>
+    <select id="facilityCollegeSelect"></select>
+    <input id="facilityName" placeholder="Facility (Canteen, Bus...)">
+    <button onclick="addFacility()">Add Facility</button>
+    <ul id="facilityList"></ul>
+  </section>
+
+<div class="admin-actions">
+  <button onclick="saveAllAdminChanges()">💾 Save Changes</button>
+  <button class="secondary" onclick="discardAdminChanges()">↩ Discard Changes</button>
+</div>
+
+  <button class="secondary" onclick="adminLogout()">Logout</button>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>

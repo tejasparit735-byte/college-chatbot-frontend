@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  color: #e5e7eb;
+}
+
+/* ---------- CARDS & PANELS ---------- */
+.card {
+  width: 380px;
+  max-width: 95%;
+  margin: 70px auto;
+  padding: 22px;
+  background: #020617;
+  border-radius: 14px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+}
+
+.panel {
+  background: #020617;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 18px;
+  border: 1px solid #1e293b;
+}
+
+/* ---------- INPUTS ---------- */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: white;
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #38bdf8;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #334155;
+  color: white;
+}
+
+/* ---------- LAYOUT ---------- */
+.hidden { display: none; }
+
+.layout {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ---------- COLLEGE LIST ---------- */
+.college-list {
+  list-style: none;
+  padding: 0;
+}
+
+.college-item {
+  background: #0f172a;
+  border: 1px solid #334155;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.college-item:hover {
+  background: #1e293b;
+}
+
+.college-item.selected {
+  border-color: #38bdf8;
+}
+
+/* ---------- PROFILE ---------- */
+.profile-block {
+  margin-top: 12px;
+}
+
+/* ---------- STATUS BADGES ---------- */
+.badge-yes {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.badge-no {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* ---------- CHATBOT ---------- */
+.chatbot {
+  margin-top: 20px;
+}
+
+#chatBox {
+  height: 220px;
+  overflow-y: auto;
+  background: #020617;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.bot {
+  color: #a3e635;
+  margin: 6px 0;
+}
+
+.user {
+  color: #38bdf8;
+  margin: 6px 0;
+  text-align: right;
+}
+
+.quick-replies button {
+  width: auto;
+  margin-right: 6px;
+  margin-top: 6px;
+}
+
+/* ---------- TEXT ---------- */
+.hint {
+  font-size: 13px;
+  color: #94a3b8;
+}
