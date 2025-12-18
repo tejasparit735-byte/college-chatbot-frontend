@@ -5,7 +5,8 @@
 
 /* ===================== CONFIG ===================== */
 let sessionToken = localStorage.getItem("sessionToken");
-const API = "https://college-chatbot-backend-0x9x.onrender.com";
+const API = "const API = "https://college-chatbot-backend-0x9x.onrender.com/api";
+";
 
 
 /* ===================== GLOBAL STATE ===================== */
