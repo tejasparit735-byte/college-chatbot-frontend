@@ -94,14 +94,42 @@ async function register() {
 }
 
 async function login() {
-  const res = await fetch(API + "/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      email: emailInput.value.trim(),
-      password: passwordInput.value
-    })
-  });
+  try {
+    const res = await fetch(API + "/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: emailInput.value.trim(),
+        password: passwordInput.value
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Login failed");
+      return;
+    }
+
+    // SUCCESS
+    localStorage.setItem("sessionToken", data.token);
+
+    authBox.classList.add("hidden");
+    studentBox.classList.remove("hidden");
+
+    welcome.innerText = "Welcome " + data.user.name;
+    studentInfo.innerText = `Percentage: ${data.user.percentage || "N/A"}%`;
+
+    await loadStudentColleges();
+
+  } catch (err) {
+    console.error("Login error:", err);
+    alert("Unable to connect to server");
+  }
+}
+
 
   const data = await res.json();
   if (!data.success) return alert("Invalid login");
